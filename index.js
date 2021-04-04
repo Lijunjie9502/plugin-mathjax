@@ -131,6 +131,13 @@ function getWebsiteAssets() {
 
 module.exports = {
     website: getWebsiteAssets,
+    hooks:{
+        "page:before": function(page) {
+        const regex = /((?<!\$)[\$](?!\$).*?(?<!\$)[\$](?!\$))/gm;
+        page.content = page.content.replace(regex, "$$$1$$")
+        return page;
+    }
+    },
     blocks: {
         math: {
             shortcuts: {
