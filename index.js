@@ -134,7 +134,10 @@ module.exports = {
     hooks:{
         "page:before": function(page) {
         const regex = /((?<!\$)[\$](?!\$).*?(?<!\$)[\$](?!\$))/gm;
-        page.content = page.content.replace(regex, "$$$1$$")
+        page.content = page.content.replace(regex, "$$$1$$");
+        const regex_pdf_link = /\[(.*)\]\((.*\.pdf)\)/gm;
+        const subst_pdf_link = `<a href="$2" target='_blank'> $1 </a>`;
+        page.content = page.content.replace(regex_pdf_link, subst_pdf_link);
         return page;
     }
     },
