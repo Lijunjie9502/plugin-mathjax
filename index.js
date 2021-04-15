@@ -136,8 +136,10 @@ module.exports = {
         const regex = /((?<![\$"])[\$](?![\$"]).*?(?<![\$"])[\$"](?![\$"]))/gm;
         page.content = page.content.replace(regex, "$$$1$$");
         const regex_pdf_link = /\[(.*)\]\((.*\.pdf)\)/gm;
-        const subst_pdf_link = `<a href="$2" target='_blank'> $1 </a>`;
-        page.content = page.content.replace(regex_pdf_link, subst_pdf_link);
+        const regex_anchor_link= /\[(.*)\]\((.*#.*)\)/gm;
+        const subst_blank_link = `<a href="$2" target='_blank'> $1 </a>`;
+        page.content = page.content.replace(regex_pdf_link, subst_blank_link);
+        page.content = page.content.replace(regex_anchor_link, subst_blank_link);
         return page;
     }
     },
