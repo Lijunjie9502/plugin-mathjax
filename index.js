@@ -133,7 +133,7 @@ module.exports = {
     website: getWebsiteAssets,
     hooks:{
         "page:before": function(page) {
-        const regex = /((?<![\$"])[\$](?![\$"]).*?(?<![\$"])[\$"](?![\$"]))/gm;
+        const regex = /((?<![\$"])[\$](?![\$"]).*?(?<![\$"])[\$](?![\$"]))/gm;
         page.content = page.content.replace(regex, "$$$1$$");
         const regex_pdf_link = /\[(.*)\]\((.*\.pdf)\)/gm;
         const regex_anchor_link= /\[(.*)\]\((.*#.*)\)/gm;
